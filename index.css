@@ -1,3 +1,117 @@
 .main-page {
-    background-color: blue;
+margin-right: 20%;
+margin-left: 20%;
 }
+
+/*
+=====
+EFFECT FADING OUT FOR SIBLINGS navbar OPTIONS
+=====
+*/
+
+.navbar:hover .navbar__link:not(:hover){
+  color: #241c69;
+  /* font-family: Verdana,Tahoma,Geneva,sans-serif;
+  margin: auto; */
+}
+
+/*
+=====
+navbar STYLES
+=====
+*/
+
+/* core styles */
+
+.navbar__list{
+  display: flex;
+  text-align: center;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.navbar__group{
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.navbar__link{
+  display: block;
+}
+
+/* skin */
+
+.navbar{
+  /* background-color: #ffe3be; */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24);
+}
+
+.select__link::before,
+.select__link::after{
+  width: 100% !important;
+  background-color: rgb(252, 185, 109);
+}
+
+.navbar__link{
+  padding: 0.8rem 0rem;
+
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  /* text-transform: uppercase; */
+}
+
+/* states */
+.navbar__link:focus{
+  outline: 2px solid rgb(255, 255, 255);
+}
+
+/* hover animation */
+
+.navbar__link{
+  position: relative;
+  overflow: hidden;
+
+  will-change: color;
+  transition: color .25s ease-out;
+}
+
+.navbar__link::before,
+.navbar__link::after{
+  content: "";
+  width: 0;
+  height: 3px;
+  background-color: rgb(252, 185, 109);
+  /* background-color: rgb(144, 205, 255); */
+
+  will-change: width;
+  transition: width .1s ease-out;
+
+  position: absolute;
+  bottom: 0;
+}
+
+.navbar__link::before{
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar__link::after{
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.navbar__link:hover::before,
+.navbar__link:hover::after{
+  width: 100%;
+  transition-duration: .2s;
+}
+
+/*
+=====
+DEMO
+=====
+*/
+

@@ -1,16 +1,32 @@
-<style>
-    .main-page {
-    background-color: blue;
-    margin-right: 20%;
-    margin-left: 20%;
-    }
-</style>
+<link rel="stylesheet" href="./index.css">
+<script src="index.js" defer> </script>
+
 <div class="main-page"> 
-    <div>
-        <h1> 
-        Welcome to my Blogs
-        </h1>
-        <p>
-        </p>
+
+    <!-- Navbar component -->    
+    <div class="navbar">
+        <ul class="navbar__list">
+            <li class="navbar__group">
+                <a class="navbar__link select__link" data-page="Home">
+                     Home
+                </a>
+            </li>
+
+            <li class="navbar__group">
+                <a class="navbar__link" data-page="BlogList">
+                    Blogs
+                </a>
+            </li>
+
+            <li class="navbar__group">
+                <a class="navbar__link" data-page="ProfessionalPage">
+                    Professional 
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main doc-->
+    <div class="main-doc">
     </div>
 </div>
