@@ -1,29 +1,48 @@
 let mainDoc = document.querySelector(".main-doc")
 
-let routes = {
-    Home: "./pages/home_page.html",
-    BlogList : "./pages/blog_list.html",
-    ProfessionalPage : "./pages/professional.html"
+const pagesDirectory = "./pages/"
+const scriptsDirectory = "./scripts/"
+
+const routes = {
+    Home: "home_page",
+    BlogList : "blog_list",
+    ProfessionalPage : "professional"
 }
 
+// add function , to do something once page loads 
+async function onLoadPage(html,thisFunction){
+    mainDoc.innerHTML = html // inner html is updated
+    await thisFunction();
+}
+
+// load page 
 async function loadPage(page){
 
     if(page in routes){
         let filePath = routes[page];
-        let content = await fetch(filePath)
-        let html = await content.text();
 
-        mainDoc.innerHTML = html
+        // get content
+        const contentPath = pagesDirectory + filePath + ".html"
+        const content = await fetch(contentPath)
+        const html = await content.text();
+
+        // get script 
+        const scriptPath = scriptsDirectory + filePath + ".js"
+        const response = await import(scriptPath)
+
+        onLoadPage(html,response.onLoad)
     }
     else{
-        console.log(page)
-        let errorText = "<h1>Ooops....There's an error fetching data ! </h1>"
-        mainDoc.innerHTML = errorText
+        const errorHTML = "<h1>Ooops....There's an error fetching data ! </h1>"
+        function onError(){
+            console.log("Hey man... couldn't the route is wrong")
+        }
+        onLoadPage(errorHTML,onError)
     }
 }
 
-var navbar = document.querySelector(".navbar")
-        
+// add eventlistener to navbar to get the page loaded
+var navbar = document.querySelector(".navbar")  
 navbar.addEventListener
             (
             "click",
@@ -40,8 +59,8 @@ navbar.addEventListener
             }
             )
 
+// add eventlistener to each navbar block , to update the select__link 
 const navlinks = document.querySelectorAll(".navbar__link")
-
 navlinks.forEach(link => {
     link.addEventListener
     (
