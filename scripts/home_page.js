@@ -1,5 +1,5 @@
 export async function onLoad(){
-    const path = "../Blogs_html/About%20Me.html"
+    const path = "./Blogs_html/About%20Me.html"
     let mainDoc = document.querySelector(".homepage-main-doc")
     let content = await fetch(path)
     let html = await content.text()
