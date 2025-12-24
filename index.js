@@ -27,10 +27,18 @@ async function loadPage(page){
         const html = await content.text();
 
         // get script 
-        const scriptPath = scriptsDirectory + filePath + ".js"
-        const response = await import(scriptPath)
+        if(page == "Home"){
+            const scriptPath = scriptsDirectory + filePath + ".js"
+            const response = await import(scriptPath)
+            onLoadPage(html,response.onLoad)
+        }
+        else{
+            function doNothing(){
+                return
+            }
+            onLoadPage(html,doNothing)
+        }
 
-        onLoadPage(html,response.onLoad)
     }
     else{
         const errorHTML = "<h1>Ooops....There's an error fetching data ! </h1>"
